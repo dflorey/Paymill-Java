@@ -60,7 +60,7 @@ public class GsonAdapter {
 			public Date deserialize(JsonElement json, Type type,
 					JsonDeserializationContext context)
 					throws JsonParseException {
-				return json == null ? null : new Date(json.getAsInt() * 1000);
+				return json == null ? null : new Date(json.getAsLong() * 1000L);
 			}
 		};
 

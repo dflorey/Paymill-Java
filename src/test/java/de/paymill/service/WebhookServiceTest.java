@@ -59,4 +59,15 @@ public class WebhookServiceTest extends TestCase {
 			throw new RuntimeException(e);
 		}
 	}
+	@Test
+	public void testParseRefundEvent() {
+		try {
+			Paymill.setApiKey("dummy");
+			WebhookService srv = Paymill.getService(WebhookService.class);
+			Event event = srv.parse(new FileInputStream(new File("test/refund.js")));
+			assertNotNull(event);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

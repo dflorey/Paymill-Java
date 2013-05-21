@@ -35,10 +35,11 @@ public class OfferServiceTest extends TestCase {
 
 	@Test
 	public void testGetOffer() {
+		Paymill.setApiKey(getToken());		
 		OfferService srv = Paymill.getService(OfferService.class);
 		Offer params = new Offer();
 		params.setAmount(199);
-		params.setInterval(Interval.WEEK);
+		params.setInterval(Interval.MONTH);
 		params.setName("Superabo");
 		params.setTrialPeriodDays(15);
 		params.setCurrency("eur");
@@ -46,6 +47,7 @@ public class OfferServiceTest extends TestCase {
 		Offer offer1 = srv.create(params);
 		Offer offer2 = srv.get(offer1.getId());
 
+		assertNotNull(offer2.getInterval());
 		assertNotNull(offer2.getId());
 		assertEquals(offer1.getId(), offer2.getId());
 	}
